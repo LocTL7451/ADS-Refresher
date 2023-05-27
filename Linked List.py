@@ -15,12 +15,12 @@ class LinkedList:
     def insert(self,val) -> None:
         # Checking to see if our linked list already has values within the reference list
         if self.head and self.end:
-            print("Inserted value {} into the linked list".format(val))
+            #print("Inserted value {} into the linked list".format(val))
             self.end.next = LinkedListNode(val)
             self.end = self.end.next
         # If the list is empty
         else:
-            print("Inserted value {} into the linked list".format(val))
+            #print("Inserted value {} into the linked list".format(val))
             self.head = LinkedListNode(val)
             self.end = self.head
 
@@ -37,17 +37,33 @@ class LinkedList:
             if currNode.next.val == val:
                 currNode.next = currNode.next.next 
                 delFlag = True
+            else:
+                currNode = currNode.next
         if delFlag:
             print("Successfully removed {} from the linked list".format(val))
         else:
             print("Could not find {} in the linked list".format(val))
         
+    def reverse(self):
+        if not self.head:
+            print("Please insert a node before reversing the linked list")
+        else:
+
+            prevNode = None
+            while self.head:
+                temp = self.head.next
+                self.head.next = prevNode
+                prevNode = self.head
+                self.head = temp
+                #print(self.printLinkedList())
+            self.head = prevNode
+                
     def printLinkedList(self):
         #print("DEBUG ENTERED PRINTLINKEDLIST")
         currNode = self.head
         retArr = []
         while currNode:
-            print("Current Node's Value: {}".format(currNode.val))
+            #print("Current Node's Value: {}".format(currNode.val))
             retArr.append(currNode.val)
             currNode = currNode.next
         return retArr
@@ -63,12 +79,14 @@ def countNodes(head):
 
 def main():
     linkedListOne = LinkedList()
-    linkedListVals = [6,3,4,2,1]
+    linkedListVals = [1,2,3,4,5,6]
     for i in linkedListVals:
         linkedListOne.insert(i)
     print(countNodes(linkedListOne.head))
     print(linkedListOne.printLinkedList())
     linkedListOne.delete(6)
-    print("TEST {}".format(linkedListOne.printLinkedList()))
+    print("Removed Test {}".format(linkedListOne.printLinkedList()))
+    linkedListOne.reverse()
+    print("Reverse Test {}".format(linkedListOne.printLinkedList()))
 main()
 
