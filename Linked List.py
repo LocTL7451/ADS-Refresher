@@ -67,6 +67,15 @@ class LinkedList:
             retArr.append(currNode.val)
             currNode = currNode.next
         return retArr
+    
+    def findValue(self,target):
+        currNode = self.head
+        while currNode:
+            if currNode.val == target:
+                return True
+            else:
+                currNode = currNode.next
+        return False
                
 # Function to count the number of nodes in the linked list's reference head
 def countNodes(head):
@@ -88,5 +97,9 @@ def main():
     print("Removed Test {}".format(linkedListOne.printLinkedList()))
     linkedListOne.reverse()
     print("Reverse Test {}".format(linkedListOne.printLinkedList()))
+    print(linkedListOne.findValue(1))
+    print(linkedListOne.findValue(10))
+
+
 main()
 
