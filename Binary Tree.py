@@ -40,6 +40,11 @@ class BinaryTree:
                 else:
                     print("This value is already present in the tree")
                     break
+    def ResetTree(self):
+        self.root = None
+    def ArrayInsert(self, arr):
+        for i in arr:
+            self.insert(i)
     def invertInsert(self,val) -> None:
         if not self.root:
             self.root = BinaryTreeNode(val)
@@ -92,8 +97,33 @@ class BinaryTree:
                     if currNode.right: 
                         tempQueue.append(currNode.right)
         return retArr
-    
-                
+    def FindLeafNodes(self):
+        nodeQueue = []
+        leafArr = []
+        
+        if not self.root:
+            return False
+        else:
+            currNode = self.root
+            while True:
+                if len(nodeQueue) == 0 and currNode == self.root:
+                    if currNode.right:
+                        nodeQueue.append(currNode.right)
+                    if currNode.left:
+                        nodeQueue.append(currNode.left)
+                    if not currNode.left and not currNode.right:
+                        leafArr.append(currNode.val)
+                elif len(nodeQueue) == 0 and currNode != self.root:
+                    break
+                else:
+                    currNode = nodeQueue.pop(-1)
+                    if currNode.right: 
+                        nodeQueue.append(currNode.right)     
+                    if currNode.left:
+                        nodeQueue.append(currNode.left)           
+                    if not currNode.left and not currNode.right:
+                        leafArr.append(currNode.val)    
+        return leafArr   
         
                 
             
@@ -152,6 +182,11 @@ def main():
     print(binTree.ArrayofElements())
     binTree.invert()
     binTree.PrettyPrintTree(binTree.root)
+    temp = binTree.ArrayofElements()
+    binTree.ResetTree()
+    binTree.ArrayInsert(temp)
+    binTree.PrettyPrintTree(binTree.root)
+    print(binTree.FindLeafNodes())
 
 main()
 
