@@ -1,9 +1,18 @@
 # Loc Lien Algorithms and Data Structures Refresher Course
 # https://www.youtube.com/watch?v=1-l_UOFi1Xw&list=PLBZBJbE_rGRV8D7XZ08LK6z-4zPoWzu5H&index=9&ab_channel=CSDojo
 # ===================
-# Binary Tree
+# Trees
 # ===================
+"""
+Notes
 
+1. A Full Tree is defined as a tree that has nodes which all have 2 children
+2. A Complete Tree is defined as a tree that has nodes which fill in from top to bottom and left to right.
+3. A Perfec Tree is defined as a tree that is complete and full, in which all leaves in a level have the same number of children (0 or 2).
+
+
+
+"""
 class BinaryTreeNode:
     def __init__(self,val) -> None:
         self.val = val
